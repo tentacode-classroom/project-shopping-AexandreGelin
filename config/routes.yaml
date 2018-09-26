@@ -5,9 +5,9 @@
 
 home:
     path: /
-    controller: App\Controller\fishController::fish
+    controller: App\Controller\FishController::fish
 
 
 album:
     path: /album/{fishId}
-    controller: App\Controller\fishAlbumController::index
+    controller: App\Controller\FishAlbumController::index
