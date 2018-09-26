@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %} La Poissonnerie !{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+    </head>
+    <body>
+    <ul>
+        <li>
+            <a href="{{ path('homepage') }}">Accueil</a>
+        </li>
+    </ul>
+        <h1>Accueil</h1>
+         <h2>Liste des poissons</h2>
+
+            <ul>
+                {% for fish in fishes  %}
+                    <li>
+                        {{loop.index}} -
+
+                         <a href="{{path('album' , {
+                         'fishId' : fish.id
+                         }) }}" >
+
+                         {{fish.id}} {{fish.name|upper}}
+
+                         </a>
+                    </li>
+                {% endfor %}
+            </ul>
+    </body>
+</html>

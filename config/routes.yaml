@@ -1,0 +1,13 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+
+
+home:
+    path: /
+    controller: App\Controller\fishController::fish
+
+
+album:
+    path: /album/{fishId}
+    controller: App\Controller\fishAlbumController::index
