@@ -1,12 +1,12 @@
 <?php
-// src/Controller/LuckyController.php
+
 namespace App\Controller;
 
 use App\Repository\FishRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
-class fishAlbumController extends AbstractController
+class FishDetailController extends AbstractController
 {
     /**
      * @Route("/detail/{fishId}", name = "detail")
