@@ -4,7 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Fish;
 
-class fishRepository
+class FishRepository
 {
     private $fishes;
 

@@ -7,11 +7,9 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class fishAlbumController extends AbstractController
 {
-
     /**
      * @Route("/album/{fishId}", name = "album")
      */
-
     public function index(int $fishId)
     {
         return $this->render("/album.html.twig", [

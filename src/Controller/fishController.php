@@ -6,16 +6,14 @@ use App\Repository\fishRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
-class fishController extends AbstractController
+class FishController extends AbstractController
 {
-
     /**
      * @Route("/", name = "homepage")
      */
-
     public function fish()
     {
-        $fishRepository = new fishRepository();
+        $fishRepository = new FishRepository();
         $fishes = $fishRepository->findAll();
 
 
