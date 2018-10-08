@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Repository\FishRepository;
+use App\Entity\Fish;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -13,11 +13,13 @@ class FishDetailController extends AbstractController
      */
     public function index(int $fishId)
     {
-        $fishRepository = new FishRepository();
-        $fish = $fishRepository->findOneById($fishId);
+
+        $repository = $this->getDoctrine()->getRepository(Fish::class);
+
+        $fish = $repository->find($fishId);
 
         return $this->render("/detail.html.twig", [
-            'fish_id' => $fish
+            'fish' => $fish
         ]);
     }
 }

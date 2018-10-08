@@ -2,6 +2,7 @@
 // src/Controller/LuckyController.php
 namespace App\Controller;
 
+use App\Entity\Fish;
 use App\Repository\FishRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -13,9 +14,13 @@ class FishController extends AbstractController
      */
     public function fish()
     {
-        $fishRepository = new FishRepository();
-        $fishes = $fishRepository->findAll();
 
+        $repository = $this->getDoctrine()->getRepository(Fish::class);
+
+        $fishes = $repository->findBy(
+            [],
+            ['price' => 'ASC']
+        );
 
         return $this->render("/home.html.twig", [
             'fishes' => $fishes

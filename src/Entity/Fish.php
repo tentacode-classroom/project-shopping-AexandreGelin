@@ -2,72 +2,107 @@
 
 namespace App\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity(repositoryClass="App\Repository\FishRepository")
+ */
 class Fish
 {
-    private $name;
+    /**
+     * @ORM\Id()
+     * @ORM\GeneratedValue()
+     * @ORM\Column(type="integer")
+     */
     private $id;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $name;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
     private $color;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
     private $breed;
-    private $image;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
     private $price;
 
-    public function setName(string $name)
-    {
-        $this->name = $name;
-    }
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $image;
 
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    public function setId(int $id)
-    {
-        $this->id = $id;
-    }
-
-    public function getId()
+    public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function setColor($color)
+    public function getName(): ?string
     {
-        $this->color = $color;
+        return $this->name;
     }
 
-    public function getColor()
+    public function setName(string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function getColor(): ?string
     {
         return $this->color;
     }
 
-    public function setBreed($breed)
+    public function setColor(string $color): self
     {
-        $this->breed = $breed;
+        $this->color = $color;
+
+        return $this;
     }
 
-    public function getBreed()
+    public function getBreed(): ?string
     {
         return $this->breed;
     }
 
-    public function setImage($image)
+    public function setBreed(string $breed): self
     {
-        $this->image = $image;
+        $this->breed = $breed;
+
+        return $this;
     }
 
-    public function getImage()
+    public function getPrice(): ?int
+    {
+        return $this->price;
+    }
+
+    public function setPrice(int $price): self
+    {
+        $this->price = $price;
+
+        return $this;
+    }
+
+    public function getImage(): ?string
     {
         return $this->image;
     }
 
-    public function setPrice($price)
+    public function setImage(string $image): self
     {
-        $this->price = $price;
-    }
+        $this->image = $image;
 
-    public function getPrice()
-    {
-        return $this->price;
+        return $this;
     }
 }

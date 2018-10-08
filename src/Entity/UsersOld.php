@@ -1,6 +1,6 @@
 <?php
 
-class Users
+class UsersOld
 {
     private $id;
     private $email;
