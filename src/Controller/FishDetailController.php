@@ -18,6 +18,12 @@ class FishDetailController extends AbstractController
 
         $fish = $repository->find($fishId);
 
+        $fish->incrementViewCounter();
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($fish);
+        $entityManager->flush();
+
         return $this->render("/detail.html.twig", [
             'fish' => $fish
         ]);
