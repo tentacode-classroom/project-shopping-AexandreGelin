@@ -1,36 +1,50 @@
 <?php
+
 namespace App\Controller;
 
-use App\Entity\Users;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use App\Entity\Users;
 use App\Form\RegistrationType;
 
 class RegistrationController extends AbstractController
 {
     /**
-     * @Route("/register", name = "inscription")
+     * @Route("/inscription", name="registration")
      */
-    public function index(Request $request)
+    public function index(Request $request, UserPasswordEncoderInterface $encoder)
     {
         $user = new Users();
+
         $form = $this->createForm(RegistrationType::class, $user);
         $form->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()) {
             $user = $form->getData();
+
+            $plainPassword = $user->getPassword();
+            $encryptedPassword = $encoder->encodePassword($user, $plainPassword);
+            $user->setPassword($encryptedPassword);
+
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();
+
             return $this->redirectToRoute('registration_success');
         }
-        return $this->render('registration.html.twig', [
+
+        return $this->render('user/registration.html.twig', [
             'form' => $form->createView(),
         ]);
     }
 
-
+    /**
+     * @Route("/inscription/ok", name="registration_success")
+     */
+    public function confirmation()
+    {
+        return $this->render('user/registration_success.html.twig');
+    }
 }

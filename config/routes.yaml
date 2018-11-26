@@ -3,11 +3,5 @@
 #    controller: App\Controller\DefaultController::index
 
 
-home:
-    path: /
-    controller: App\Controller\FishController::fish
-
-
-album:
-    path: /detail/{fishId}
-    controller: App\Controller\FishAlbumController::index
+logout:
+  path: /logout

@@ -2,7 +2,12 @@
     {% block content %}
 
         <h1>Poisson n° {{fish.id}}</h1>
-        <h2>{{ fish.viewCounter }}</h2>
+        <h2>
+            {% set viewCounter = fish.viewCounter %}
+            {% transchoice viewCounter %}
+                {0} NO view|{1} %viewCounter% view |]1,Inf[ %viewCounter%  views
+            {% endtranschoice %}
+        </h2>
 
 
     {% endblock %}
